@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/ -->
+<html lang="en-US" prefix="og: https://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	
+<!-- Search Engine Optimization by Rank Math - https://s.rankmath.com/home -->
+<title>Wafw00f: The Web Application Firewall Detection And Identification Tool | The Dark Source</title>
+<meta name="description" content="How to use the wafw00f tool to detect the WAFs or Web Application Firewall. The wafw00f has multiple techniques to detect or identify the WAF like normal response analysis, send the malicious request and its response analysis, some guessing techniques, etc.">
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+<link rel="canonical" href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wafw00f: The Web Application Firewall Detection And Identification Tool | The Dark Source">
+<meta property="og:description" content="How to use the wafw00f tool to detect the WAFs or Web Application Firewall. The wafw00f has multiple techniques to detect or identify the WAF like normal response analysis, send the malicious request and its response analysis, some guessing techniques, etc.">
+<meta property="og:url" content="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/">
+<meta property="og:site_name" content="The Dark Source">
+<meta property="article:section" content="Tools">
+<meta property="og:updated_time" content="2021-07-03T02:04:16+00:00">
+<meta property="og:image" content="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png">
+<meta property="og:image:secure_url" content="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png">
+<meta property="og:image:width" content="1702">
+<meta property="og:image:height" content="1076">
+<meta property="og:image:alt" content="wafw00f: The Web Application Firewall Fingerprinting Tool">
+<meta property="og:image:type" content="image/png">
+<meta property="article:published_time" content="2020-11-28T09:37:09+00:00">
+<meta property="article:modified_time" content="2021-07-03T02:04:16+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wafw00f: The Web Application Firewall Detection And Identification Tool | The Dark Source">
+<meta name="twitter:description" content="How to use the wafw00f tool to detect the WAFs or Web Application Firewall. The wafw00f has multiple techniques to detect or identify the WAF like normal response analysis, send the malicious request and its response analysis, some guessing techniques, etc.">
+<meta name="twitter:image" content="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png">
+<meta name="twitter:label1" content="Written by">
+<meta name="twitter:data1" content="J. Jogal">
+<meta name="twitter:label2" content="Time to read">
+<meta name="twitter:data2" content="5 minutes">
+<script type="text/javascript" async="" src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/analytics.js.download"></script><script type="text/javascript" async="" src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/js"></script><script type="application/ld+json" class="rank-math-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thedarksource.com/#organization","name":"The Dark Source","url":"https://thedarksource.com","email":"admin@thedarksource.com","logo":{"@type":"ImageObject","@id":"https://thedarksource.com/#logo","url":"https://thedarksource.com/wp-content/uploads/2021/05/tds_logo.png","caption":"The Dark Source","inLanguage":"en-US","width":"500","height":"500"}},{"@type":"WebSite","@id":"https://thedarksource.com/#website","url":"https://thedarksource.com","name":"The Dark Source","publisher":{"@id":"https://thedarksource.com/#organization"},"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png","url":"https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png","width":"1702","height":"1076","caption":"wafw00f: The Web Application Firewall Fingerprinting Tool","inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#breadcrumb","itemListElement":[{"@type":"ListItem","position":"1","item":{"@id":"https://thedarksource.com","name":"Home"}},{"@type":"ListItem","position":"2","item":{"@id":"https://thedarksource.com/tools/","name":"Tools"}},{"@type":"ListItem","position":"3","item":{"@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/","name":"wafw00f"}}]},{"@type":"Person","@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#author","name":"J. Jogal","image":{"@type":"ImageObject","@id":"https://secure.gravatar.com/avatar/c368420edf032d3615b5fdb8ff8751ac?s=96&amp;d=mm&amp;r=g","url":"https://secure.gravatar.com/avatar/c368420edf032d3615b5fdb8ff8751ac?s=96&amp;d=mm&amp;r=g","caption":"J. Jogal","inLanguage":"en-US"},"sameAs":["https://thedarksource.com"],"worksFor":{"@id":"https://thedarksource.com/#organization"}},{"@type":"WebPage","@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#webpage","url":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/","name":"Wafw00f: The Web Application Firewall Detection And Identification Tool | The Dark Source","datePublished":"2020-11-28T09:37:09+00:00","dateModified":"2021-07-03T02:04:16+00:00","author":{"@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#author"},"isPartOf":{"@id":"https://thedarksource.com/#website"},"primaryImageOfPage":{"@id":"https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png"},"inLanguage":"en-US","breadcrumb":{"@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#breadcrumb"}},{"@type":"BlogPosting","headline":"Wafw00f: The Web Application Firewall Detection And Identification Tool | The Dark Source","keywords":"wafw00f","datePublished":"2020-11-28T09:37:09+00:00","dateModified":"2021-07-03T02:04:16+00:00","author":{"@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#author"},"publisher":{"@id":"https://thedarksource.com/#organization"},"description":"How to use the wafw00f tool to detect the WAFs or Web Application Firewall. The wafw00f has multiple techniques to detect or identify the WAF like normal response analysis, send the malicious request and its response analysis, some guessing techniques, etc.","name":"Wafw00f: The Web Application Firewall Detection And Identification Tool | The Dark Source","@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#richSnippet","isPartOf":{"@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#webpage"},"image":{"@id":"https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png"},"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#webpage"}}]}</script>
+<!-- /Rank Math WordPress SEO plugin -->
+
+<link rel="alternate" type="application/rss+xml" title="The Dark Source » Feed" href="https://thedarksource.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="The Dark Source » Comments Feed" href="https://thedarksource.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="The Dark Source » wafw00f: The Web Application Firewall Detection and Identification Tool Comments Feed" href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/feed/">
+<style>
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/style.min.css" media="all">
+<link data-minify="1" rel="stylesheet" id="advanced-gutenberg-blocks-style-css" href="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/blocks.style.build-1cd8c2845577533a1efa1f6c0e221123.css" media="all">
+<style id="global-styles-inline-css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel="stylesheet" id="generate-style-css" href="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/all.min.css" media="all">
+<style id="generate-style-inline-css">
+body{background-color:#f4efff;color:#2d2d2d;}a{color:#282b7a;}a:hover, a:focus, a:active{color:#ff6633;}body .grid-container{max-width:1200px;}.wp-block-group__inner-container{max-width:1200px;margin-left:auto;margin-right:auto;}.navigation-search{position:absolute;left:-99999px;pointer-events:none;visibility:hidden;z-index:20;width:100%;top:0;transition:opacity 100ms ease-in-out;opacity:0;}.navigation-search.nav-search-active{left:0;right:0;pointer-events:auto;visibility:visible;opacity:1;}.navigation-search input[type="search"]{outline:0;border:0;vertical-align:bottom;line-height:1;opacity:0.9;width:100%;z-index:20;border-radius:0;-webkit-appearance:none;height:60px;}.navigation-search input::-ms-clear{display:none;width:0;height:0;}.navigation-search input::-ms-reveal{display:none;width:0;height:0;}.navigation-search input::-webkit-search-decoration, .navigation-search input::-webkit-search-cancel-button, .navigation-search input::-webkit-search-results-button, .navigation-search input::-webkit-search-results-decoration{display:none;}.main-navigation li.search-item{z-index:21;}li.search-item.active{transition:opacity 100ms ease-in-out;}.nav-left-sidebar .main-navigation li.search-item.active,.nav-right-sidebar .main-navigation li.search-item.active{width:auto;display:inline-block;float:right;}.gen-sidebar-nav .navigation-search{top:auto;bottom:0;}body, button, input, select, textarea{font-family:Arial, Helvetica, sans-serif;font-size:19px;}body{line-height:1.5;}.entry-content > [class*="wp-block-"]:not(:last-child){margin-bottom:1.5em;}.main-title{font-family:Arial, Helvetica, sans-serif;}.main-navigation a, .menu-toggle{font-family:Arial, Helvetica, sans-serif;}.main-navigation .main-nav ul ul li a{font-size:14px;}.widget-title{font-family:Arial, Helvetica, sans-serif;}.sidebar .widget, .footer-widgets .widget{font-size:17px;}button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.wp-block-button .wp-block-button__link{font-family:Arial, Helvetica, sans-serif;font-size:15px;}h1{font-family:Arial, Helvetica, sans-serif;font-weight:600;font-size:43px;}h2{font-weight:600;font-size:36px;}h3{font-weight:600;}h4{font-weight:600;font-size:25px;}h5{font-size:inherit;}.site-info{font-family:Arial, Helvetica, sans-serif;}@media (max-width:768px){.main-title{font-size:20px;}h1{font-size:30px;}h2{font-size:25px;}}.top-bar{background-color:#636363;color:#ffffff;}.top-bar a{color:#ffffff;}.top-bar a:hover{color:#303030;}.site-header{background-color:#ffffff;color:#3a3a3a;}.site-header a{color:#3a3a3a;}.main-title a,.main-title a:hover{color:#ffffff;}.site-description{color:#757575;}.main-navigation,.main-navigation ul ul{background-color:#5401ad;}.main-navigation .main-nav ul li a,.menu-toggle, .main-navigation .menu-bar-items{color:#ffffff;}.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{color:#ffffff;background-color:#6302cc;}button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus{color:#ffffff;}.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#ffffff;background-color:#5e01c1;}.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a{color:#ffffff;background-color:#5e01c1;}.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a, .main-navigation .menu-bar-items .search-item.active > a{color:#ffffff;background-color:#6302cc;}.main-navigation ul ul{background-color:#3f3f3f;}.main-navigation .main-nav ul ul li a{color:#515151;}.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a{color:#7a8896;background-color:#4f4f4f;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a{color:#8f919e;background-color:#4f4f4f;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a{color:#8f919e;background-color:#4f4f4f;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header{color:#464663;background-color:#ffffff;}.entry-title a{color:#2f4468;}.entry-title a:hover{color:#0a0000;}.entry-meta{color:#878787;}.entry-meta a{color:#727272;}.entry-meta a:hover{color:#0a0101;}h1{color:#001350;}h2{color:#001350;}h3{color:#001350;}h4{color:#001350;}h5{color:#001350;}.sidebar .widget{background-color:#ffffff;}.sidebar .widget .widget-title{color:#000000;}.footer-widgets{color:#ffffff;background-color:#330168;}.footer-widgets a{color:#ffffff;}.footer-widgets .widget-title{color:#ffffff;}.site-info{color:#fafafa;background-color:#330168;}.site-info a{color:#2f4468;}.site-info a:hover{color:#0a0a0a;}.footer-bar .widget_nav_menu .current-menu-item a{color:#0a0a0a;}input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select{color:#666666;background-color:#fafafa;border-color:#cccccc;}input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus{color:#666666;background-color:#ffffff;border-color:#bfbfbf;}button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background){color:#ffffff;background-color:#242226;}button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover{color:#ffffff;background-color:#35343a;}a.generate-back-to-top{background-color:rgba( 0,0,0,0.4 );color:#ffffff;}a.generate-back-to-top:hover,a.generate-back-to-top:focus{background-color:rgba( 0,0,0,0.6 );color:#ffffff;}@media (max-width: 768px){.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{background:none;color:#ffffff;}}.inside-top-bar{padding:10px;}.inside-header{padding:40px;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container{padding:50px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-50px;width:calc(100% + 100px);max-width:calc(100% + 100px);}.container.grid-container{max-width:1300px;}.one-container.right-sidebar .site-main,.one-container.both-right .site-main{margin-right:50px;}.one-container.left-sidebar .site-main,.one-container.both-left .site-main{margin-left:50px;}.one-container.both-sidebars .site-main{margin:0px 50px 0px 50px;}.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a{line-height:65px;}.navigation-search input[type="search"]{height:65px;}.rtl .menu-item-has-children .dropdown-menu-toggle{padding-left:20px;}.rtl .main-navigation .main-nav ul li.menu-item-has-children > a{padding-right:20px;}.widget-area .widget{padding:50px;}.site-info{padding:20px;}@media (max-width:768px){.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container{padding:30px;}.site-info{padding-right:10px;padding-left:10px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-30px;width:calc(100% + 60px);max-width:calc(100% + 60px);}}/* End cached CSS */@media (max-width: 768px){.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav{display:none;}[class*="nav-float-"] .site-header .inside-header > *{float:none;clear:both;}}
+.navigation-branding .main-title{font-weight:bold;text-transform:none;font-size:25px;font-family:Arial, Helvetica, sans-serif;}@media (max-width: 768px){.navigation-branding .main-title{font-size:20px;}}
+.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a{transition: line-height 300ms ease}.main-navigation.toggled .main-nav > ul{background-color: #5401ad}
+</style>
+<link data-minify="1" rel="stylesheet" id="recent-posts-widget-with-thumbnails-public-style-css" href="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/public-af5723be92fd98b90d9add293050aa4f.css" media="all">
+<link rel="stylesheet" id="generate-blog-css" href="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/style-min.css" media="all">
+<link rel="stylesheet" id="generate-sticky-css" href="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/sticky.min.css" media="all">
+<link rel="stylesheet" id="generate-navigation-branding-css" href="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/navigation-branding.min.css" media="all">
+<style id="generate-navigation-branding-inline-css">
+.navigation-branding img, .site-logo.mobile-header-logo img{height:65px;width:auto;}.navigation-branding .main-title{line-height:65px;}@media (max-width: 1210px){#site-navigation .navigation-branding, #sticky-navigation .navigation-branding{margin-left:10px;}}@media (max-width: 768px){.main-navigation:not(.slideout-navigation) .main-nav{-ms-flex:0 0 100%;flex:0 0 100%;}.main-navigation:not(.slideout-navigation) .inside-navigation{-ms-flex-wrap:wrap;flex-wrap:wrap;display:-webkit-box;display:-ms-flexbox;display:flex;}.nav-aligned-center .navigation-branding, .nav-aligned-left .navigation-branding{margin-right:auto;}.nav-aligned-center  .main-navigation.has-branding:not(.slideout-navigation) .inside-navigation .main-nav,.nav-aligned-center  .main-navigation.has-sticky-branding.navigation-stick .inside-navigation .main-nav,.nav-aligned-left  .main-navigation.has-branding:not(.slideout-navigation) .inside-navigation .main-nav,.nav-aligned-left  .main-navigation.has-sticky-branding.navigation-stick .inside-navigation .main-nav{margin-right:0px;}}
+</style>
+<script src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/jquery.min.js.download" id="jquery-core-js" defer=""></script>
+<link rel="https://api.w.org/" href="https://thedarksource.com/wp-json/"><link rel="alternate" type="application/json" href="https://thedarksource.com/wp-json/wp/v2/posts/1826"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://thedarksource.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://thedarksource.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.2">
+<link rel="shortlink" href="https://thedarksource.com/?p=1826">
+<link rel="alternate" type="application/json+oembed" href="https://thedarksource.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthedarksource.com%2Fwafw00f-web-application-firewall-fingerprinting-tool%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://thedarksource.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthedarksource.com%2Fwafw00f-web-application-firewall-fingerprinting-tool%2F&amp;format=xml">
+
+<!--BEGIN: TRACKING CODE MANAGER BY INTELLYWP.COM IN HEAD//-->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/js(1)"></script>
+<script src="data:text/javascript;base64,DQogIHdpbmRvdy5kYXRhTGF5ZXIgPSB3aW5kb3cuZGF0YUxheWVyIHx8IFtdOw0KICBmdW5jdGlvbiBndGFnKCl7ZGF0YUxheWVyLnB1c2goYXJndW1lbnRzKTt9DQogIGd0YWcoJ2pzJywgbmV3IERhdGUoKSk7DQoNCiAgZ3RhZygnY29uZmlnJywgJ1VBLTE0ODQ2NTY1Mi0xJyk7DQo="></script>
+<meta name="google-site-verification" content="3VL3z0em1vZGyBd6_j_jvIAGjs4TkSqXko8d-aS6d-4">
+<!--END: https://wordpress.org/plugins/tracking-code-manager IN HEAD//--><link rel="pingback" href="https://thedarksource.com/xmlrpc.php">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="https://thedarksource.com/wp-content/uploads/2021/05/tds_logo-150x150.png" sizes="32x32">
+<link rel="icon" href="https://thedarksource.com/wp-content/uploads/2021/05/tds_logo-300x300.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://thedarksource.com/wp-content/uploads/2021/05/tds_logo-300x300.png">
+<meta name="msapplication-TileImage" content="https://thedarksource.com/wp-content/uploads/2021/05/tds_logo-300x300.png">
+		<style id="wp-custom-css">
+			
+
+/* JJ custom  */
+
+.syntaxhighlighter table td.code .container{padding : 7px !important;}
+
+code, pre {
+	
+    padding: 0;
+    padding-bottom: 0;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+/* TDS custom code */
+.wp-block-code {
+    background: transparent url(https://thedarksource.com/wp-content/uploads/2020/08/thedarksource_terminal_header.png) no-repeat 0 0;
+padding: 20px 0px 0px 0px !important;
+	border: 0 !important;
+}
+.wp-block-code code{
+    
+overflow-x: auto !important;
+    background-color: #011627;
+    border: 2px solid #3A3F4C;
+    color: #01DF01;
+    display: block;
+    padding: 9px;
+    white-space: pre;
+    text-align: left;
+    min-height: 20px;
+    font-size: 18px;
+    line-height: 120%;
+}
+/* hide scrollbar but keep funcitonality of scrolling */
+
+.wp-block-preformatted::-webkit-scrollbar {
+  display: none;
+}
+.wp-block-preformatted  {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+/* wp-block-preformatted custom terminal view */
+
+.wp-block-preformatted {
+font-family: monospace;
+overflow-x: auto !important;
+color: #f8f8f2;
+display: block;
+padding: 9px;
+white-space: pre;
+text-align: left;
+min-height: 20px;
+font-size: 16px;
+line-height: 120%;
+margin: 1.07142857em 0;
+word-break: break-all;
+}
+/* terminal header */
+.wp-block-preformatted { 
+background: #011627;
+padding: 9px 0px 9px 10px !important;
+	border: 0 !important;
+	border-radius: 2px;
+	box-shadow: 3px 3px 18px 0px #07010f73;
+}
+
+/* Rankmath Breadcrump css */
+nav.rank-math-breadcrumb {
+    margin-top: 15px;
+    margin-left: 8px;
+}		</style>
+		<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+
+<body class="post-template-default single single-post postid-1826 single-format-standard wp-embed-responsive post-image-above-header post-image-aligned-center sticky-menu-no-transition sticky-enabled both-sticky-menu right-sidebar nav-below-header separate-containers fluid-header active-footer-widgets-0 nav-search-enabled nav-aligned-right header-aligned-left dropdown-hover featured-image-active using-mouse" itemtype="https://schema.org/Blog" itemscope="">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 0.49803921568627"></fefuncr><fefuncg type="table" tableValues="0 0.49803921568627"></fefuncg><fefuncb type="table" tableValues="0 0.49803921568627"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 1"></fefuncr><fefuncg type="table" tableValues="0 1"></fefuncg><fefuncb type="table" tableValues="0 1"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.54901960784314 0.98823529411765"></fefuncr><fefuncg type="table" tableValues="0 1"></fefuncg><fefuncb type="table" tableValues="0.71764705882353 0.25490196078431"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 1"></fefuncr><fefuncg type="table" tableValues="0 0.27843137254902"></fefuncg><fefuncb type="table" tableValues="0.5921568627451 0.27843137254902"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0 0"></fefuncr><fefuncg type="table" tableValues="0 0.64705882352941"></fefuncg><fefuncb type="table" tableValues="0 1"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.78039215686275 1"></fefuncr><fefuncg type="table" tableValues="0 0.94901960784314"></fefuncg><fefuncb type="table" tableValues="0.35294117647059 0.47058823529412"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.65098039215686 0.40392156862745"></fefuncr><fefuncg type="table" tableValues="0 1"></fefuncg><fefuncb type="table" tableValues="0.44705882352941 0.4"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tableValues="0.098039215686275 1"></fefuncr><fefuncg type="table" tableValues="0 0.66274509803922"></fefuncg><fefuncb type="table" tableValues="0.84705882352941 0.41960784313725"></fefuncb><fefunca type="table" tableValues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><a class="screen-reader-text skip-link" href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#content" title="Skip to content">Skip to content</a>		<nav id="sticky-navigation" class="auto-hide-sticky has-branding main-navigation sub-menu-right stuckElement is_stuck navigation-stick navigation-clone sticky-navigation-transition" itemtype="https://schema.org/SiteNavigationElement" itemscope="" style="z-index: 100; margin-top: 0px; position: fixed; top: -65px;">
+			<div class="inside-navigation grid-container grid-parent">
+				<div class="navigation-branding"><p class="main-title" itemprop="headline">
+				<a href="https://thedarksource.com/" rel="home">
+					The Dark Source
+				</a>
+			</p></div><form method="get" class="search-form navigation-search" action="https://thedarksource.com/">
+					<input type="search" class="search-field" value="" name="s" title="Search">
+				</form>		<div class="mobile-bar-items">
+						<span class="search-item">
+				<a aria-label="Open Search Bar" href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#">
+					<span class="gp-icon icon-search"><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z"></path>
+					</svg><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path>
+					</svg></span>				</a>
+			</span>
+		</div>
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="gp-icon icon-menu-bars"><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z"></path>
+					</svg><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path>
+					</svg></span><span class="mobile-menu">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-main-menu" class=" menu sf-menu"><li id="menu-item-19" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-19"><a href="https://thedarksource.com/articles/">Articles</a></li>
+<li id="menu-item-81" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-81"><a href="https://thedarksource.com/web/">Web</a></li>
+<li id="menu-item-2361" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2361"><a href="https://thedarksource.com/mobile/">Mobile</a></li>
+<li id="menu-item-1196" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1196"><a href="https://thedarksource.com/linux/">Linux</a></li>
+<li id="menu-item-2360" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2360"><a href="https://thedarksource.com/tools/">Tools</a></li>
+<li id="menu-item-107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-107"><a href="https://thedarksource.com/howto/">How To’s</a></li>
+<li id="menu-item-1195" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1195"><a href="https://thedarksource.com/cheat-sheets/">Cheat Sheets</a></li>
+<li class="search-item menu-item-align-right"><a aria-label="Open Search Bar" href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#"><span class="gp-icon icon-search"><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z"></path>
+					</svg><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path>
+					</svg></span></a></li></ul></div>			</div>
+		</nav><nav id="sticky-placeholder" class="auto-hide-sticky has-branding main-navigation sub-menu-right is_stuck navigation-stick navigation-clone sticky-navigation-transition" style="visibility: hidden;">
+			<div class="inside-navigation grid-container grid-parent">
+				<div class="navigation-branding"><p class="main-title" itemprop="headline">
+				<a href="https://thedarksource.com/" rel="home">
+					The Dark Source
+				</a>
+			</p></div><form method="get" class="search-form navigation-search" action="https://thedarksource.com/">
+					<input type="search" class="search-field" value="" name="s" title="Search">
+				</form>		<div class="mobile-bar-items">
+						<span class="search-item">
+				<a aria-label="Open Search Bar" href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#">
+					<span class="gp-icon icon-search"><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z"></path>
+					</svg><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path>
+					</svg></span>				</a>
+			</span>
+		</div>
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="gp-icon icon-menu-bars"><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z"></path>
+					</svg><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path>
+					</svg></span><span class="mobile-menu">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-main-menu" class=" menu sf-menu"><li id="menu-item-19" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-19"><a href="https://thedarksource.com/articles/">Articles</a></li>
+<li id="menu-item-81" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-81"><a href="https://thedarksource.com/web/">Web</a></li>
+<li id="menu-item-2361" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2361"><a href="https://thedarksource.com/mobile/">Mobile</a></li>
+<li id="menu-item-1196" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1196"><a href="https://thedarksource.com/linux/">Linux</a></li>
+<li id="menu-item-2360" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2360"><a href="https://thedarksource.com/tools/">Tools</a></li>
+<li id="menu-item-107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-107"><a href="https://thedarksource.com/howto/">How To’s</a></li>
+<li id="menu-item-1195" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1195"><a href="https://thedarksource.com/cheat-sheets/">Cheat Sheets</a></li>
+<li class="search-item menu-item-align-right"><a aria-label="Open Search Bar" href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#"><span class="gp-icon icon-search"><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z"></path>
+					</svg><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z"></path>
+					</svg></span></a></li></ul></div>			</div>
+		</nav>
+		
+	<div id="page" class="site grid-container container hfeed grid-parent">
+				<div id="content" class="site-content">
+			
+<!-- custom add for breadcrumbs -->
+<nav aria-label="breadcrumbs" class="rank-math-breadcrumb"><p><a href="https://thedarksource.com/">Home</a><span class="separator"> » </span><a href="https://thedarksource.com/tools/">Tools</a><span class="separator"> » </span><span class="last">wafw00f</span></p></nav>
+	<div id="primary" class="content-area grid-parent mobile-grid-100 grid-70 tablet-grid-70">
+		<main id="main" class="site-main">
+			
+<article id="post-1826" class="post-1826 post type-post status-publish format-standard has-post-thumbnail hentry category-tools" itemtype="https://schema.org/CreativeWork" itemscope="">
+	<div class="inside-article">
+		<div class="featured-image  page-header-image-single ">
+			<picture class="attachment-full size-full" itemprop="image" title="wafw00f: The Web Application Firewall Detection and Identification Tool">
+<source type="image/webp" srcset="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png.webp 1702w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-300x190.png.webp 300w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1024x647.png.webp 1024w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-768x486.png.webp 768w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1536x971.png.webp 1536w" sizes="(max-width: 1702px) 100vw, 1702px">
+<img width="1702" height="1076" src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/wafw00f.png" alt="wafw00f: The Web Application Firewall Fingerprinting Tool" itemprop="image" sizes="(max-width: 1702px) 100vw, 1702px" srcset="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png 1702w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-300x190.png 300w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1024x647.png 1024w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-768x486.png 768w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1536x971.png 1536w" class="lazyloaded" data-ll-status="loaded">
+</picture>
+<noscript><picture class="attachment-full size-full" itemprop="image" title="wafw00f: The Web Application Firewall Detection and Identification Tool">
+<source type="image/webp" srcset="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png.webp 1702w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-300x190.png.webp 300w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1024x647.png.webp 1024w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-768x486.png.webp 768w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1536x971.png.webp 1536w" sizes="(max-width: 1702px) 100vw, 1702px"/>
+<img width="1702" height="1076" src="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png" alt="wafw00f: The Web Application Firewall Fingerprinting Tool" itemprop="image" srcset="https://thedarksource.com/wp-content/uploads/2020/11/wafw00f.png 1702w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-300x190.png 300w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1024x647.png 1024w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-768x486.png 768w, https://thedarksource.com/wp-content/uploads/2020/11/wafw00f-1536x971.png 1536w" sizes="(max-width: 1702px) 100vw, 1702px"/>
+</picture>
+</noscript>
+		</div>			<header class="entry-header">
+				<h1 class="entry-title" itemprop="headline">wafw00f: The Web Application Firewall Detection and Identification Tool</h1>		<div class="entry-meta">
+			<span class="posted-on"><time class="updated" datetime="2021-07-03T02:04:16+00:00" itemprop="dateModified">July 3, 2021</time><time class="entry-date published" datetime="2020-11-28T09:37:09+00:00" itemprop="datePublished">November 28, 2020</time></span> <span class="byline">by <span class="author vcard" itemprop="author" itemtype="https://schema.org/Person" itemscope=""><a class="url fn n" href="https://thedarksource.com/author/j-jogal/" title="View all posts by J. Jogal" rel="author" itemprop="url"><span class="author-name" itemprop="name">J. Jogal</span></a></span></span> 		</div>
+					</header>
+			
+		<div class="entry-content" itemprop="text">
+			
+<p>In this article, we gonna see how to use the wafw00f tool to detect the WAFs or Web Application Firewall. The wafw00f has multiple techniques to detect or identify the WAF like normal response analysis, send the malicious request and its response analysis, some guessing techniques, etc.</p>
+
+
+
+<div class="wp-block-advanced-gutenberg-blocks-summary"><p class="wp-block-advanced-gutenberg-blocks-summary__title">Table of contents</p><div class="wp-block-advanced-gutenberg-blocks-summary__fold"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg></div><ol role="directory" class="wp-block-advanced-gutenberg-blocks-summary__list"><li><a href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#how-does-wafw00f-work">How does wafw00f work?</a><ol></ol></li><li><a href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#installing-wafw00f-tool">Installing wafw00f tool</a><ol></ol></li><li><a href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#wafw00f-help-command">wafw00f help command</a><ol></ol></li><li><a href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#list-of-wafs-can-be-detected-by-wafw00f">List of WAFs can be detected by wafw00f</a><ol></ol></li><li><a href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#using-wafw00f-tool">Using wafw00f tool</a><ol></ol></li><li><a href="https://thedarksource.com/wafw00f-web-application-firewall-fingerprinting-tool/#references">References,</a><ol></ol></li></ol></div>
+
+
+
+<h2 id="how-does-wafw00f-work">How does wafw00f work?</h2>
+
+
+
+<p>To do its magic, WAFW00F does the following:</p>
+
+
+
+<ul><li>Sends a&nbsp;<em>normal</em>&nbsp;HTTP request and analyses the response; this identifies a number of WAF solutions.</li><li>If that is not successful, it sends a number of (potentially malicious) HTTP requests and uses simple logic to deduce which WAF it is.</li><li>If that is also not successful, it analyses the responses previously returned and uses another simple algorithm to guess if a WAF or security solution is actively responding to our attacks.</li></ul>
+
+
+
+<p>&nbsp; &nbsp;For further details, check out the source code on&nbsp;<a rel="noreferrer noopener" class="rank-math-link" href="https://github.com/EnableSecurity/wafw00f" target="_blank">EnableSecurity’s main repository</a>.</p>
+
+
+
+<p></p>
+
+
+
+<h2 id="installing-wafw00f-tool">Installing wafw00f tool</h2>
+
+
+
+<p>We can download the zip package from the official GitHub repository.</p>
+
+
+
+<div class="wp-container-624b1a671f441 wp-block-buttons">
+<div class="wp-block-button"><a class="wp-block-button__link" href="https://github.com/EnableSecurity/wafw00f" target="_blank" rel="noopener">Download wafw00f tool</a></div>
+</div>
+
+
+
+<p>Or you can clone the repository using git client. Follow the commands to get the package.</p>
+
+
+
+<pre class="wp-block-preformatted">$ git clone https://github.com/EnableSecurity/wafw00f.git
+Cloning into 'wafw00f'...
+remote: Enumerating objects: 244, done.
+remote: Counting objects: 100% (244/244), done.
+remote: Compressing objects: 100% (221/221), done.
+remote: Total 4170 (delta 192), reused 35 (delta 23), pack-reused 3926
+Receiving objects: 100% (4170/4170), 643.37 KiB | 152.00 KiB/s, done.
+Resolving deltas: 100% (3019/3019), done.</pre>
+
+
+
+<p>Navigate to the wafw00f directory and run the following command to install the wafw00f tool in the system.</p>
+
+
+
+<pre class="wp-block-preformatted">$ python setup.py install
+
+# this will process the setup file and install wafw00f in the system</pre>
+
+
+
+<h2 id="wafw00f-help-command">wafw00f help command</h2>
+
+
+
+<p>For help you can make use of the&nbsp;<code>--help</code>&nbsp;option.</p>
+
+
+
+<pre class="wp-block-preformatted">$ wafw00f --help
+Usage: wafw00f url1 [url2 [url3 ... ]]
+example: wafw00f http://www.victim.org/
+
+Options:
+  -h, --help            show this help message and exit
+  -v, --verbose         Enable verbosity, multiple -v options increase
+                        verbosity
+  -a, --findall         Find all WAFs which match the signatures, do not stop
+                        testing on the first one
+  -r, --noredirect      Do not follow redirections given by 3xx responses
+  -t TEST, --test=TEST  Test for one specific WAF
+  -o OUTPUT, --output=OUTPUT
+                        Write output to csv, json or text file depending on
+                        file extension. For stdout, specify - as filename.
+  -i INPUT, --input-file=INPUT
+                        Read targets from a file. Input format can be csv,
+                        json or text. For csv and json, a `url` column name or
+                        element is required.
+  -l, --list            List all WAFs that WAFW00F is able to detect
+  -p PROXY, --proxy=PROXY
+                        Use an HTTP proxy to perform requests, examples:
+                        http://hostname:8080, socks5://hostname:1080,
+                        http://user:pass@hostname:8080
+  -V, --version         Print out the current version of WafW00f and exit.
+  -H HEADERS, --headers=HEADERS
+                        Pass custom headers via a text file to overwrite the
+                        default header set.</pre>
+
+
+
+<h2 id="list-of-wafs-can-be-detected-by-wafw00f">List of WAFs can be detected by wafw00f<a href="https://github.com/EnableSecurity/wafw00f#what-does-it-detect" target="_blank" rel="noopener"></a></h2>
+
+
+
+<p>WAFW00F can detect a number of firewalls, we can list the firewalls that can be detected by the wafwOOf tool.</p>
+
+
+
+<pre class="wp-block-preformatted">$ wafw00f -l
+
+                   ______
+                  /      \
+                 (  Woof! )
+                  \  ____/                      )
+                  ,,                           ) (_
+             .-. -    _______                 ( |__|
+            ()``; |==|_______)                .)|__|
+            / ('        /|\                  (  |__|
+        (  /  )        / | \                  . |__|
+         \(_)_))      /  |  \                   |__|
+
+                    ~ WAFW00F : v2.1.0 ~
+    The Web Application Firewall Fingerprinting Toolkit
+    
+[+] Can test for these WAFs:
+
+  WAF Name                        Manufacturer
+  --------                        ------------
+
+  ACE XML Gateway                  Cisco                            
+  aeSecure                         aeSecure                         
+  AireeCDN                         Airee                            
+  Airlock                          Phion/Ergon                      
+  Alert Logic                      Alert Logic                      
+  AliYunDun                        Alibaba Cloud Computing          
+  Anquanbao                        Anquanbao                        
+  AnYu                             AnYu Technologies                
+  Approach                         Approach                         
+  AppWall                          Radware                          
+  Armor Defense                    Armor                            
+  ArvanCloud                       ArvanCloud                       
+  ASP.NET Generic                  Microsoft                        
+  ASPA Firewall                    ASPA Engineering Co.             
+  Astra                            Czar Securities                  
+  AWS Elastic Load Balancer        Amazon                           
+  AzionCDN                         AzionCDN                         
+  Azure Front Door                 Microsoft                        
+  Barikode                         Ethic Ninja                      
+  Barracuda                        Barracuda Networks               
+  Bekchy                           Faydata Technologies Inc.        
+  Beluga CDN                       Beluga                           
+  BIG-IP Local Traffic Manager     F5 Networks                      
+  BinarySec                        BinarySec                        
+  BitNinja                         BitNinja                         
+  BlockDoS                         BlockDoS                         
+  Bluedon                          Bluedon IST                      
+  BulletProof Security Pro         AITpro Security                  
+  CacheWall                        Varnish                          
+  CacheFly CDN                     CacheFly                         
+  Comodo cWatch                    Comodo CyberSecurity             
+  CdnNS Application Gateway        CdnNs/WdidcNet                   
+  ChinaCache Load Balancer         ChinaCache                       
+  Chuang Yu Shield                 Yunaq                            
+  Cloudbric                        Penta Security                   
+  Cloudflare                       Cloudflare Inc.                  
+  Cloudfloor                       Cloudfloor DNS                   
+  Cloudfront                       Amazon                           
+  CrawlProtect                     Jean-Denis Brun                  
+  DataPower                        IBM                              
+  DenyALL                          Rohde &amp; Schwarz CyberSecurity    
+  Distil                           Distil Networks                  
+  DOSarrest                        DOSarrest Internet Security      
+  DotDefender                      Applicure Technologies           
+  DynamicWeb Injection Check       DynamicWeb                       
+  Edgecast                         Verizon Digital Media            
+  Eisoo Cloud Firewall             Eisoo                            
+  Expression Engine                EllisLab                         
+  BIG-IP AppSec Manager            F5 Networks                      
+  BIG-IP AP Manager                F5 Networks                      
+  Fastly                           Fastly CDN                       
+  FirePass                         F5 Networks                      
+  FortiWeb                         Fortinet                         
+  GoDaddy Website Protection       GoDaddy                          
+  Greywizard                       Grey Wizard                      
+  Huawei Cloud Firewall            Huawei                           
+  HyperGuard                       Art of Defense                   
+  Imunify360                       CloudLinux                       
+  Incapsula                        Imperva Inc.                     
+  IndusGuard                       Indusface                        
+  Instart DX                       Instart Logic                    
+  ISA Server                       Microsoft                        
+  Janusec Application Gateway      Janusec                          
+  Jiasule                          Jiasule                          
+  Kona SiteDefender                Akamai                           
+  KS-WAF                           KnownSec                         
+  KeyCDN                           KeyCDN                           
+  LimeLight CDN                    LimeLight                        
+  LiteSpeed                        LiteSpeed Technologies           
+  Open-Resty Lua Nginx             FLOSS                            
+  Oracle Cloud                     Oracle                           
+  Malcare                          Inactiv                          
+  MaxCDN                           MaxCDN                           
+  Mission Control Shield           Mission Control                  
+  ModSecurity                      SpiderLabs                       
+  NAXSI                            NBS Systems                      
+  Nemesida                         PentestIt                        
+  NevisProxy                       AdNovum                          
+  NetContinuum                     Barracuda Networks               
+  NetScaler AppFirewall            Citrix Systems                   
+  Newdefend                        NewDefend                        
+  NexusGuard Firewall              NexusGuard                       
+  NinjaFirewall                    NinTechNet                       
+  NullDDoS Protection              NullDDoS                         
+  NSFocus                          NSFocus Global Inc.              
+  OnMessage Shield                 BlackBaud                        
+  Palo Alto Next Gen Firewall      Palo Alto Networks               
+  PerimeterX                       PerimeterX                       
+  PentaWAF                         Global Network Services          
+  pkSecurity IDS                   pkSec                            
+  PT Application Firewall          Positive Technologies            
+  PowerCDN                         PowerCDN                         
+  Profense                         ArmorLogic                       
+  Puhui                            Puhui                            
+  Qcloud                           Tencent Cloud                    
+  Qiniu                            Qiniu CDN                        
+  Reblaze                          Reblaze                          
+  RSFirewall                       RSJoomla!                        
+  RequestValidationMode            Microsoft                        
+  Sabre Firewall                   Sabre                            
+  Safe3 Web Firewall               Safe3                            
+  Safedog                          SafeDog                          
+  Safeline                         Chaitin Tech.                    
+  SecKing                          SecKing                          
+  eEye SecureIIS                   BeyondTrust                      
+  SecuPress WP Security            SecuPress                        
+  SecureSphere                     Imperva Inc.                     
+  Secure Entry                     United Security Providers        
+  SEnginx                          Neusoft                          
+  ServerDefender VP                Port80 Software                  
+  Shield Security                  One Dollar Plugin                
+  Shadow Daemon                    Zecure                           
+  SiteGround                       SiteGround                       
+  SiteGuard                        Sakura Inc.                      
+  Sitelock                         TrueShield                       
+  SonicWall                        Dell                             
+  UTM Web Protection               Sophos                           
+  Squarespace                      Squarespace                      
+  SquidProxy IDS                   SquidProxy                       
+  StackPath                        StackPath                        
+  Sucuri CloudProxy                Sucuri Inc.                      
+  Tencent Cloud Firewall           Tencent Technologies             
+  Teros                            Citrix Systems                   
+  Trafficshield                    F5 Networks                      
+  TransIP Web Firewall             TransIP                          
+  URLMaster SecurityCheck          iFinity/DotNetNuke               
+  URLScan                          Microsoft                        
+  UEWaf                            UCloud                           
+  Varnish                          OWASP                            
+  Viettel                          Cloudrity                        
+  VirusDie                         VirusDie LLC                     
+  Wallarm                          Wallarm Inc.                     
+  WatchGuard                       WatchGuard Technologies          
+  WebARX                           WebARX Security Solutions        
+  WebKnight                        AQTRONIX                         
+  WebLand                          WebLand                          
+  wpmudev WAF                      Incsub                           
+  RayWAF                           WebRay Solutions                 
+  WebSEAL                          IBM                              
+  WebTotem                         WebTotem                         
+  West263 CDN                      West263CDN                       
+  Wordfence                        Defiant                          
+  WP Cerber Security               Cerber Tech                      
+  WTS-WAF                          WTS                              
+  360WangZhanBao                   360 Technologies                 
+  XLabs Security WAF               XLabs                            
+  Xuanwudun                        Xuanwudun                        
+  Yundun                           Yundun                           
+  Yunsuo                           Yunsuo                           
+  Yunjiasu                         Baidu Cloud Computing            
+  YXLink                           YxLink Technologies              
+  Zenedge                          Zenedge                          
+  ZScaler                          Accenture                        </pre>
+
+
+
+<h2 id="using-wafw00f-tool">Using wafw00f tool</h2>
+
+
+
+<p>The basic usage is to pass an URL as an argument. </p>
+
+
+
+<p>Example:</p>
+
+
+
+<pre class="wp-block-preformatted">$ wafw00f http://example.com/
+
+                ______
+               /      \
+              (  W00f! )
+               \  ____/
+               ,,    __            404 Hack Not Found
+           |`-.__   / /                      __     __
+           /"  _/  /_/                       \ \   / /
+          *===*    /                          \ \_/ /  405 Not Allowed
+         /     )__//                           \   /
+    /|  /     /---`                        403 Forbidden
+    \\/`   \ |                                 / _ \
+    `\    /_\\_              502 Bad Gateway  / / \ \  500 Internal Error
+      `_____``-`                             /_/   \_\
+
+                        ~ WAFW00F : v2.1.0 ~
+        The Web Application Firewall Fingerprinting Toolkit
+    
+[*] Checking http://example.com/
+[+] The site http://example.com/ is behind Edgecast (Verizon Digital Media) WAF.
+[~] Number of requests: 2</pre>
+
+
+
+<p>So, thats how the wafw00f tool can detect or identify the WAF or Web application Firewall.</p>
+
+
+
+<h2 id="references">References,</h2>
+
+
+
+<ul><li><a href="https://github.com/EnableSecurity/wafw00f" class="rank-math-link" target="_blank" rel="noopener">wafw00f Official Git repo</a></li><li><a href="https://github.com/enablesecurity/wafw00f/wiki/" class="rank-math-link" target="_blank" rel="noopener">Documentation/Wiki</a></li><li><a href="https://pypi.org/project/wafw00f" class="rank-math-link" target="_blank" rel="noopener">Pypi Package Repository</a></li></ul>
+		</div>
+
+				<footer class="entry-meta">
+			<span class="cat-links"><span class="gp-icon icon-categories"><svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+						<path d="M0 112c0-26.51 21.49-48 48-48h110.014a48 48 0 0 1 43.592 27.907l12.349 26.791A16 16 0 0 0 228.486 128H464c26.51 0 48 21.49 48 48v224c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112z" fill-rule="nonzero"></path>
+					</svg></span><span class="screen-reader-text">Categories </span><a href="https://thedarksource.com/tools/" rel="category tag">Tools</a></span> 		<nav id="nav-below" class="post-navigation">
+			<span class="screen-reader-text">Post navigation</span>
+
+			<div class="nav-previous"><span class="gp-icon icon-arrow-left"><svg viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+						<path d="M178.425 138.212c0 2.265-1.133 4.813-2.832 6.512L64.276 256.001l111.317 111.277c1.7 1.7 2.832 4.247 2.832 6.513 0 2.265-1.133 4.813-2.832 6.512L161.43 394.46c-1.7 1.7-4.249 2.832-6.514 2.832-2.266 0-4.816-1.133-6.515-2.832L16.407 262.514c-1.699-1.7-2.832-4.248-2.832-6.513 0-2.265 1.133-4.813 2.832-6.512l131.994-131.947c1.7-1.699 4.249-2.831 6.515-2.831 2.265 0 4.815 1.132 6.514 2.831l14.163 14.157c1.7 1.7 2.832 3.965 2.832 6.513z" fill-rule="nonzero"></path>
+					</svg></span><span class="prev" title="Previous"><a href="https://thedarksource.com/easysploit-metasploit-automation-tool/" rel="prev">EasySploit: A Metasploit Automation Tool; Payload Creation and Exploitation Faster than ever</a></span></div><div class="nav-next"><span class="gp-icon icon-arrow-right"><svg viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+						<path d="M178.425 256.001c0 2.266-1.133 4.815-2.832 6.515L43.599 394.509c-1.7 1.7-4.248 2.833-6.514 2.833s-4.816-1.133-6.515-2.833l-14.163-14.162c-1.699-1.7-2.832-3.966-2.832-6.515 0-2.266 1.133-4.815 2.832-6.515l111.317-111.316L16.407 144.685c-1.699-1.7-2.832-4.249-2.832-6.515s1.133-4.815 2.832-6.515l14.163-14.162c1.7-1.7 4.249-2.833 6.515-2.833s4.815 1.133 6.514 2.833l131.994 131.993c1.7 1.7 2.832 4.249 2.832 6.515z" fill-rule="nonzero"></path>
+					</svg></span><span class="next" title="Next"><a href="https://thedarksource.com/how-to-solve-this-adb-server-version-doesnt-match-this-client-error-in-android/" rel="next">How to resolve this ADB server version doesn’t match this client error in Android?</a></span></div>		</nav>
+				</footer>
+			</div>
+</article>
+		</main>
+	</div>
+
+	<div id="right-sidebar" class="widget-area sidebar is-right-sidebar grid-30 tablet-grid-30 grid-parent" itemtype="https://schema.org/WPSideBar" itemscope="">
+	<div class="inside-right-sidebar">
+		<aside id="recent-posts-widget-with-thumbnails-5" class="widget inner-padding recent-posts-widget-with-thumbnails">
+<div id="rpwwt-recent-posts-widget-with-thumbnails-5" class="rpwwt-widget">
+<h2 class="widget-title">Related Posts</h2>
+	<ul>
+		<li><a href="https://thedarksource.com/cyber-security-terms-and-definitions/"><span class="rpwwt-post-title">Most Common Cyber Security Terms and Definitions every security enthusiast should know about</span></a></li>
+		<li><a href="https://thedarksource.com/how-to-use-tree-command/"><span class="rpwwt-post-title">How to use tree command to create a Files/Directory structure</span></a></li>
+		<li><a href="https://thedarksource.com/vulnerable-android-apps/"><span class="rpwwt-post-title">List of intentionally Vulnerable Android apps to Practice Mobile Pentesting skills</span></a></li>
+		<li><a href="https://thedarksource.com/reflutter-to-bypass-ssl-pinning-flutter-based-apps/"><span class="rpwwt-post-title">Bypass SSL Pinning of Flutter apps to Capture HTTPS traffic in Burp Suite (with reFlutter)</span></a></li>
+		<li><a href="https://thedarksource.com/visualcodegrepper-tool-for-c-sharp-asp-net-source-code-review/"><span class="rpwwt-post-title">VisualCodeGrepper tool: Best C# – Asp.Net Source code review tool</span></a></li>
+	</ul>
+</div><!-- .rpwwt-widget -->
+</aside><aside id="categories-2" class="widget inner-padding widget_categories"><h2 class="widget-title">Library</h2>
+			<ul>
+					<li class="cat-item cat-item-7"><a href="https://thedarksource.com/articles/">Articles</a>
+</li>
+	<li class="cat-item cat-item-358"><a href="https://thedarksource.com/cheat-sheets/">Cheat Sheets</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="https://thedarksource.com/howto/" title="How to do anything">How To's</a>
+</li>
+	<li class="cat-item cat-item-203"><a href="https://thedarksource.com/linux/">Linux</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="https://thedarksource.com/mobile/" title="Android / iOS security testing">Mobile</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="https://thedarksource.com/network/" title="Network security testing">Network</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="https://thedarksource.com/red-teaming/">Red Teaming</a>
+</li>
+	<li class="cat-item cat-item-365"><a href="https://thedarksource.com/tools/">Tools</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://thedarksource.com/web/" title="Web Application security testing">Web</a>
+</li>
+			</ul>
+
+			</aside><aside id="tag_cloud-3" class="widget inner-padding widget_tag_cloud"><h2 class="widget-title">Tags</h2><div class="tagcloud"><a href="https://thedarksource.com/tag/active-directory-attacks/" class="tag-cloud-link tag-link-368 tag-link-position-1" style="font-size: 8pt;" aria-label="Active Directory Attacks (1 item)">Active Directory Attacks<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/active-directory-lab/" class="tag-cloud-link tag-link-367 tag-link-position-2" style="font-size: 8pt;" aria-label="Active Directory Lab (1 item)">Active Directory Lab<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/aem-hacker/" class="tag-cloud-link tag-link-376 tag-link-position-3" style="font-size: 8pt;" aria-label="aem hacker (1 item)">aem hacker<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/aem-testing/" class="tag-cloud-link tag-link-375 tag-link-position-4" style="font-size: 8pt;" aria-label="aem testing (1 item)">aem testing<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/android/" class="tag-cloud-link tag-link-9 tag-link-position-5" style="font-size: 13.25pt;" aria-label="Android (2 items)">Android<span class="tag-link-count"> (2)</span></a>
+<a href="https://thedarksource.com/tag/android-security-testing/" class="tag-cloud-link tag-link-10 tag-link-position-6" style="font-size: 13.25pt;" aria-label="Android Security Testing (2 items)">Android Security Testing<span class="tag-link-count"> (2)</span></a>
+<a href="https://thedarksource.com/tag/arp-cache/" class="tag-cloud-link tag-link-385 tag-link-position-7" style="font-size: 8pt;" aria-label="ARP Cache (1 item)">ARP Cache<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/burp-suite/" class="tag-cloud-link tag-link-360 tag-link-position-8" style="font-size: 22pt;" aria-label="Burp Suite (5 items)">Burp Suite<span class="tag-link-count"> (5)</span></a>
+<a href="https://thedarksource.com/tag/ctf/" class="tag-cloud-link tag-link-386 tag-link-position-9" style="font-size: 8pt;" aria-label="ctf (1 item)">ctf<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/error-solution/" class="tag-cloud-link tag-link-384 tag-link-position-10" style="font-size: 8pt;" aria-label="Error Solution (1 item)">Error Solution<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/flutter-app-testing/" class="tag-cloud-link tag-link-388 tag-link-position-11" style="font-size: 8pt;" aria-label="Flutter app testing (1 item)">Flutter app testing<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/linux/" class="tag-cloud-link tag-link-129 tag-link-position-12" style="font-size: 13.25pt;" aria-label="Linux (2 items)">Linux<span class="tag-link-count"> (2)</span></a>
+<a href="https://thedarksource.com/tag/linux-command/" class="tag-cloud-link tag-link-389 tag-link-position-13" style="font-size: 8pt;" aria-label="Linux Command (1 item)">Linux Command<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/metasploit/" class="tag-cloud-link tag-link-374 tag-link-position-14" style="font-size: 8pt;" aria-label="Metasploit (1 item)">Metasploit<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/mobile/" class="tag-cloud-link tag-link-369 tag-link-position-15" style="font-size: 8pt;" aria-label="Mobile (1 item)">Mobile<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/network-security-testing/" class="tag-cloud-link tag-link-364 tag-link-position-16" style="font-size: 8pt;" aria-label="Network Security Testing (1 item)">Network Security Testing<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/snmp/" class="tag-cloud-link tag-link-363 tag-link-position-17" style="font-size: 8pt;" aria-label="SNMP (1 item)">SNMP<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/snmp-penetration-testing/" class="tag-cloud-link tag-link-362 tag-link-position-18" style="font-size: 8pt;" aria-label="SNMP Penetration Testing (1 item)">SNMP Penetration Testing<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/ssl-pinning-bypass/" class="tag-cloud-link tag-link-387 tag-link-position-19" style="font-size: 8pt;" aria-label="SSL Pinning bypass (1 item)">SSL Pinning bypass<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/vulnerability-scanner/" class="tag-cloud-link tag-link-361 tag-link-position-20" style="font-size: 8pt;" aria-label="Vulnerability Scanner (1 item)">Vulnerability Scanner<span class="tag-link-count"> (1)</span></a>
+<a href="https://thedarksource.com/tag/vulnerable-lab/" class="tag-cloud-link tag-link-366 tag-link-position-21" style="font-size: 13.25pt;" aria-label="Vulnerable Lab (2 items)">Vulnerable Lab<span class="tag-link-count"> (2)</span></a></div>
+</aside><aside id="archives-6" class="widget inner-padding widget_archive"><h2 class="widget-title">Archives</h2>
+			<ul>
+					<li><a href="https://thedarksource.com/2021/11/">November 2021</a>&nbsp;(4)</li>
+	<li><a href="https://thedarksource.com/2021/09/">September 2021</a>&nbsp;(2)</li>
+	<li><a href="https://thedarksource.com/2021/08/">August 2021</a>&nbsp;(2)</li>
+	<li><a href="https://thedarksource.com/2021/07/">July 2021</a>&nbsp;(4)</li>
+	<li><a href="https://thedarksource.com/2021/06/">June 2021</a>&nbsp;(4)</li>
+	<li><a href="https://thedarksource.com/2021/05/">May 2021</a>&nbsp;(5)</li>
+	<li><a href="https://thedarksource.com/2021/04/">April 2021</a>&nbsp;(4)</li>
+	<li><a href="https://thedarksource.com/2021/03/">March 2021</a>&nbsp;(1)</li>
+	<li><a href="https://thedarksource.com/2020/12/">December 2020</a>&nbsp;(1)</li>
+	<li><a href="https://thedarksource.com/2020/11/">November 2020</a>&nbsp;(7)</li>
+	<li><a href="https://thedarksource.com/2020/10/">October 2020</a>&nbsp;(4)</li>
+	<li><a href="https://thedarksource.com/2020/09/">September 2020</a>&nbsp;(7)</li>
+	<li><a href="https://thedarksource.com/2020/08/">August 2020</a>&nbsp;(4)</li>
+	<li><a href="https://thedarksource.com/2020/06/">June 2020</a>&nbsp;(4)</li>
+	<li><a href="https://thedarksource.com/2020/04/">April 2020</a>&nbsp;(1)</li>
+			</ul>
+
+			</aside><aside id="pages-3" class="widget inner-padding widget_pages"><h2 class="widget-title">Pages</h2>
+			<ul>
+				<li class="page_item page-item-1161"><a href="https://thedarksource.com/about-us/">About Us</a></li>
+<li class="page_item page-item-1159"><a href="https://thedarksource.com/disclaimer/">Disclaimer</a></li>
+<li class="page_item page-item-1883"><a href="https://thedarksource.com/dmca-notice/">DMCA NOTICE</a></li>
+<li class="page_item page-item-3"><a href="https://thedarksource.com/privacy-policy/">Privacy Policy</a></li>
+			</ul>
+
+			</aside>	</div>
+</div>
+
+	</div>
+</div>
+
+
+<div class="site-footer">
+			<footer class="site-info" itemtype="https://schema.org/WPFooter" itemscope="">
+			<div class="inside-site-info grid-container grid-parent">
+								<div class="copyright-bar">
+					2022 © The Dark Source				</div>
+			</div>
+		</footer>
+		</div>
+
+<style>.wp-container-624b1a671f441 {display: flex;gap: 0.5em;flex-wrap: wrap;align-items: center;align-items: center;}.wp-container-624b1a671f441 > * { margin: 0; }</style>
+<script src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/sticky.min.js.download" id="generate-sticky-js" defer=""></script>
+<script id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script id="rocket-delay-js-js-after">
+(function() {
+"use strict";var e=function(){function n(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(e,t,r){return t&&n(e.prototype,t),r&&n(e,r),e}}();function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function r(e,t){n(this,r),this.attrName="data-rocketlazyloadscript",this.browser=t,this.options=this.browser.options,this.triggerEvents=e,this.userEventListener=this.triggerListener.bind(this)}return e(r,[{key:"init",value:function(){this._addEventListener(this)}},{key:"reset",value:function(){this._removeEventListener(this)}},{key:"_addEventListener",value:function(t){this.triggerEvents.forEach(function(e){return window.addEventListener(e,t.userEventListener,t.options)})}},{key:"_removeEventListener",value:function(t){this.triggerEvents.forEach(function(e){return window.removeEventListener(e,t.userEventListener,t.options)})}},{key:"_loadScriptSrc",value:function(){var r=this,e=document.querySelectorAll("script["+this.attrName+"]");0!==e.length&&Array.prototype.slice.call(e).forEach(function(e){var t=e.getAttribute(r.attrName);e.setAttribute("src",t),e.removeAttribute(r.attrName)}),this.reset()}},{key:"triggerListener",value:function(){this._loadScriptSrc(),this._removeEventListener(this)}}],[{key:"run",value:function(){RocketBrowserCompatibilityChecker&&new r(["keydown","mouseover","touchmove","touchstart"],new RocketBrowserCompatibilityChecker({passive:!0})).init()}}]),r}();t.run();
+}());
+</script>
+<!--[if lte IE 11]>
+<script src='https://thedarksource.com/wp-content/themes/generatepress/assets/js/classList.min.js?ver=3.0.2' id='generate-classlist-js'></script>
+<![endif]-->
+<script id="generate-main-js-extra">
+var generatepressMenu = {"toggleOpenedSubMenus":"1","openSubMenuLabel":"Open Sub-Menu","closeSubMenuLabel":"Close Sub-Menu"};
+</script>
+<script src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/main.min.js.download" id="generate-main-js" defer=""></script>
+<script id="generate-navigation-search-js-extra">
+var generatepressNavSearch = {"open":"Open Search Bar","close":"Close Search Bar"};
+</script>
+<script src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/navigation-search.min.js.download" id="generate-navigation-search-js" defer=""></script>
+ 
+      <script type="text/javascript"> 
+        (function($) {
+        $(document).ready(function(){
+    
+      $("body").on("click", ".wp-block-advanced-gutenberg-blocks-summary__fold", function(e){
+        e.preventDefault();
+        var parent = $(this).parents(".wp-block-advanced-gutenberg-blocks-summary").toggleClass("is-folded");
+      });
+    
+          });
+        })(jQuery);  
+      </script>
+    <script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async="" src="./Wafw00f_ The Web Application Firewall Detection And Identification Tool _ The Dark Source_files/lazyload.min.js.download"></script>
+
+
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1649089127 --></body></html>
